@@ -1,0 +1,55 @@
+
+ApplicationController
+  cart
+[31m    returns the user's shopping cart, an initially empty array (FAILED - 1)[0m
+[32m    creates a cart in the session if one doesn't exist[0m
+[31m    returns the existing cart if one already exists (FAILED - 2)[0m
+
+homepage
+[31m  adds items to the cart when they're submitted via its form (FAILED - 3)[0m
+
+products/index
+[32m  shows everything in the cart[0m
+
+Failures:
+
+  1) ApplicationController cart returns the user's shopping cart, an initially empty array
+     [31mFailure/Error: expect(controller.cart).to eq [][0m
+     [31m[0m
+     [31m  expected: [][0m
+     [31m       got: nil[0m
+     [31m[0m
+     [31m  (compared using ==)[0m
+     [36m# ./spec/controllers/application_controller_spec.rb:6:in `block (3 levels) in <top (required)>'[0m
+
+  2) ApplicationController cart returns the existing cart if one already exists
+     [31mFailure/Error: expect(controller.cart).to eq @request.session[:cart][0m
+     [31m[0m
+     [31m  expected: ["apples", "bananas", "pears"][0m
+     [31m       got: nil[0m
+     [31m[0m
+     [31m  (compared using ==)[0m
+     [36m# ./spec/controllers/application_controller_spec.rb:17:in `block (3 levels) in <top (required)>'[0m
+
+  3) homepage adds items to the cart when they're submitted via its form
+     [31mFailure/Error: <%= cart.each do |product| %>[0m
+     [31m[0m
+     [31mActionView::Template::Error:[0m
+     [31m  undefined local variable or method `cart' for #<#<Class:0x00005556a9bda830>:0x00005556a9bd92f0>[0m
+     [36m# ./app/views/products/index.html.erb:4:in `_app_views_products_index_html_erb___3257805981559985587_46915351664860'[0m
+     [36m# ./spec/features/cart_spec.rb:5:in `block (2 levels) in <top (required)>'[0m
+     [36m# ------------------[0m
+     [36m# --- Caused by: ---[0m
+     [36m# NameError:[0m
+     [36m#   undefined local variable or method `cart' for #<#<Class:0x00005556a9bda830>:0x00005556a9bd92f0>[0m
+     [36m#   ./app/views/products/index.html.erb:4:in `_app_views_products_index_html_erb___3257805981559985587_46915351664860'[0m
+
+Finished in 0.0437 seconds (files took 2.18 seconds to load)
+[31m5 examples, 3 failures[0m
+
+Failed examples:
+
+[31mrspec ./spec/controllers/application_controller_spec.rb:5[0m [36m# ApplicationController cart returns the user's shopping cart, an initially empty array[0m
+[31mrspec ./spec/controllers/application_controller_spec.rb:14[0m [36m# ApplicationController cart returns the existing cart if one already exists[0m
+[31mrspec ./spec/features/cart_spec.rb:4[0m [36m# homepage adds items to the cart when they're submitted via its form[0m
+
